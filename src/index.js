@@ -1,8 +1,8 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
 
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
@@ -20,14 +20,14 @@ const firebaseConfig = {
   storageBucket: "personal-portfolio-b75f8.appspot.com",
   messagingSenderId: "531467221910",
   appId: "1:531467221910:web:25fa28f07d5c31199e7bb7",
-  measurementId: "G-MLSPFD0TK6"
+  measurementId: "G-MLSPFD0TK6",
 };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <App />
