@@ -3,5 +3,8 @@
     "site": "event-check-in-2022",
     "public": "build",
     "ignore": ["firebase.json", "**/.*", "**/node_modules/**"]
+  },
+  "database": {
+    "rules": "database.rules.json"
   }
 }

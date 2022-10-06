@@ -4,16 +4,13 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 
-// Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
-
 import "bootstrap/dist/css/bootstrap.min.css";
 
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+// ***** Start of Firebase Configurations *****
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
+import { getDatabase } from "firebase/database";
+
 const firebaseConfig = {
   apiKey: "AIzaSyCJfRIrScd4u4JEQ613k72RlMh-68IRkh0",
   authDomain: "personal-portfolio-b75f8.firebaseapp.com",
@@ -23,11 +20,11 @@ const firebaseConfig = {
   messagingSenderId: "531467221910",
   appId: "1:531467221910:web:25fa28f07d5c31199e7bb7",
   measurementId: "G-MLSPFD0TK6",
+  databaseURL: "https://personal-portfolio-b75f8.firebaseio.com",
 };
-
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
+const app = initializeApp(firebaseConfig); // Initialize Firebase
 const analytics = getAnalytics(app);
+// ***** End of Firebase Configurations *****
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
