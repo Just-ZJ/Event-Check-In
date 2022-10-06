@@ -1,6 +1,6 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { Admin } from "./Admin";
-import { CheckIn } from "./CheckIn";
+import { Admin } from "./components/Admin";
+import { CheckIn } from "./components/CheckIn";
 
 function App() {
   return (
