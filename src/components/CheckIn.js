@@ -9,33 +9,38 @@ export function CheckIn() {
   const onSubmitEvent = (event) => {
     //prevent the default form submission
     event.preventDefault();
-    //update json in realtime database
+
     const db = getDatabase();
+    //check if person has signed up - whether name can be found in database
     get(child(ref(db), `names/${name}`))
       .then((snapshot) => {
         if (snapshot.exists()) {
+          //update json in realtime database
           set(ref(db, `names/${name}`), { checkin: true });
           console.log(`${name} has been checked in`);
           //redirect to success page
           navigate("/success", {
             state: {
+              success: true,
               message: `${name} has successfully checked-in.`,
             },
           });
         } else {
           //redirect to failure - not found
           console.log(`No data available for ${name}`);
-          navigate("/success", {
+          navigate("/failure", {
             state: {
+              success: false,
               message: `${name} could not be found in the sign-up list.`,
             },
           });
         }
       })
       .catch((error) => {
-        //redirect to failure
-        navigate("/success", {
+        //redirect to failure - error
+        navigate("/failure", {
           state: {
+            success: false,
             message: `Error: ${error}`,
           },
         });
