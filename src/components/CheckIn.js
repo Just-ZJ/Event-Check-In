@@ -1,17 +1,55 @@
-import { getDatabase, ref, set } from "firebase/database";
+import { child, get, getDatabase, ref, set } from "firebase/database";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export function CheckIn() {
-  const onSubmitEvent = () => {
+  const navigate = useNavigate();
+  const [name, setName] = useState("");
+
+  const onSubmitEvent = (event) => {
+    //prevent the default form submission
+    event.preventDefault();
     //update json in realtime database
     const db = getDatabase();
-    let name = document.getElementById("name").value;
-    console.log(`path is: names/${name}`);
-    set(ref(db, `names/${name}`), { checkin: true });
+    get(child(ref(db), `names/${name}`))
+      .then((snapshot) => {
+        if (snapshot.exists()) {
+          set(ref(db, `names/${name}`), { checkin: true });
+          console.log(`${name} has been checked in`);
+          //redirect to success page
+          navigate("/success", {
+            state: {
+              message: `${name} has successfully checked-in.`,
+            },
+          });
+        } else {
+          //redirect to failure - not found
+          console.log(`No data available for ${name}`);
+          navigate("/success", {
+            state: {
+              message: `${name} could not be found in the sign-up list.`,
+            },
+          });
+        }
+      })
+      .catch((error) => {
+        //redirect to failure
+        navigate("/success", {
+          state: {
+            message: `Error: ${error}`,
+          },
+        });
+        console.error(error);
+      });
+  };
+
+  const onChangeInput = (event) => {
+    setName(event.target.value);
   };
 
   return (
     <>
-      <form className="w-75" onSubmit={() => onSubmitEvent()}>
+      <form className="w-75 p-3 m-auto" onSubmit={onSubmitEvent}>
         <div class="form-group">
           <label for="name">姓名</label>
           <input
@@ -19,12 +57,13 @@ export function CheckIn() {
             id="name"
             class="form-control"
             placeholder="Enter Name"
+            onChange={onChangeInput}
           />
           <small class="form-text text-muted my-3">
             Please enter your full name. 请输入全名。
           </small>
         </div>
-        <button type="submit" class="btn btn-primary m-auto">
+        <button type="submit" class="btn btn-primary m-auto align-middle">
           Submit
         </button>
       </form>
