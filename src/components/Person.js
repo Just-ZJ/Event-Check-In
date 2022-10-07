@@ -1,23 +1,19 @@
 import { getDatabase, ref, set } from "firebase/database";
 
-export function Person({ person, path }) {
+export function Person({ data, person, path }) {
   const onChangeEvent = () => {
-    console.log(`${person.name}'s checkbox clicked - ${person.checkin}`);
-    console.log(path);
+    //update json in realtime database
     const db = getDatabase();
-    set(ref(db, path), {
-      name: person.name,
-      checkin: true,
-    });
+    set(ref(db, path), { checkin: true });
   };
 
   return (
     <>
-      <div class="mb-3">
-        <label>{person.name}</label>
+      <div>
+        <label>{person}</label>
         <input
           type="checkbox"
-          checked={person.checkin}
+          checked={data[person].checkin}
           onChange={() => onChangeEvent()}
         />
       </div>

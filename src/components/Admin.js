@@ -7,34 +7,17 @@ const dataRendering = (data) => {
   return data == null ? (
     <></>
   ) : (
-    Object.keys(data).map((element) => {
-      return Object.keys(data[element]).map((people, i) => {
-        return (
-          <Person
-            key={i}
-            person={data[element][people]}
-            path={`names/${element}/${people}`}
-          />
-        );
-      });
+    Object.keys(data).map((person, i) => {
+      return (
+        <Person key={i} data={data} person={person} path={`names/${person}`} />
+      );
     })
   );
 };
 
 export function Admin() {
-  // {onValue(names, (snapshot) => {
-  //   const data = snapshot.val();
-  //   for (let key in data) {
-  //     let element = data[key];
-  //     for (let person in element) {
-  //       console.log(element[person]);
-  //       return <Person person={person} />;
-  //     }
-  //   }
-  //   // updateStarCount(postElement, data);
-  // })}
-
   const [data, setData] = useState(null);
+  //read json from database
   const database = ref(getDatabase());
   get(child(database, "names"))
     .then((snapshot) => {
@@ -50,8 +33,10 @@ export function Admin() {
 
   return (
     <>
-      <div>This page is for admins to view</div>
-      {dataRendering(data)}
+      <div className="mb-3 align-middle w-50 m-auto text-center">
+        <h2>List of Attendees</h2>
+        {dataRendering(data)}
+      </div>
     </>
   );
 }

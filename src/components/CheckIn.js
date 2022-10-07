@@ -1,20 +1,30 @@
+import { getDatabase, ref, set } from "firebase/database";
+
 export function CheckIn() {
+  const onSubmitEvent = () => {
+    //update json in realtime database
+    const db = getDatabase();
+    let name = document.getElementById("name").value;
+    console.log(`path is: names/${name}`);
+    set(ref(db, `names/${name}`), { checkin: true });
+  };
+
   return (
     <>
-      <form>
+      <form className="w-75" onSubmit={() => onSubmitEvent()}>
         <div class="form-group">
           <label for="name">姓名</label>
           <input
             type="text"
+            id="name"
             class="form-control"
-            aria-describedby="emailHelp"
             placeholder="Enter Name"
           />
-          <small id="emailHelp" class="form-text text-muted">
+          <small class="form-text text-muted my-3">
             Please enter your full name. 请输入全名。
           </small>
         </div>
-        <button type="submit" class="btn btn-primary">
+        <button type="submit" class="btn btn-primary m-auto">
           Submit
         </button>
       </form>

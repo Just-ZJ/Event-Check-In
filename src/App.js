@@ -5,12 +5,14 @@ import { CheckIn } from "./components/CheckIn";
 function App() {
   return (
     <>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<CheckIn />} />
-          <Route path="/admin" element={<Admin />} />
-        </Routes>
-      </BrowserRouter>
+      <div className="w-75 m-auto mt-5">
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<CheckIn />} />
+            <Route path="/admin" element={<Admin />} />
+          </Routes>
+        </BrowserRouter>
+      </div>
     </>
   );
 }
