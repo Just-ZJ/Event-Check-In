@@ -1,9 +1,16 @@
 {
-  "hosting": {
-    "site": "event-check-in-2022",
-    "public": "build",
-    "ignore": ["firebase.json", "**/.*", "**/node_modules/**"]
-  },
+  "hosting": [
+    {
+      "site": "event-check-in-2022",
+      "public": "public-site/build",
+      "ignore": ["firebase.json", "**/.*", "**/node_modules/**"]
+    },
+    {
+      "site": "event-check-in-2022-admin",
+      "public": "admin-site/build",
+      "ignore": ["firebase.json", "**/.*", "**/node_modules/**"]
+    }
+  ],
   "database": {
     "rules": "database.rules.json"
   }
