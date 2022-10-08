@@ -69,7 +69,7 @@ export function CheckIn() {
           </small>
         </div>
         <button type="submit" class="btn btn-primary m-auto align-middle">
-          Submit
+          Check In
         </button>
       </form>
     </>

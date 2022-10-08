@@ -9,14 +9,14 @@ export function Person({ data, person, path }) {
 
   return (
     <>
-      <div>
+      <h5 className="my-2">
         <label>{person}</label>
         <input
           type="checkbox"
           checked={data[person].checkin}
           onChange={() => onChangeEvent()}
         />
-      </div>
+      </h5>
     </>
   );
 }
