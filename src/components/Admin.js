@@ -35,7 +35,6 @@ export function Admin() {
   const onChangeEvent = (event) => {
     //create json object form list of names
     let names = event.target.value.split(/\n/);
-
     let jsonObj = { names: {} };
     names.forEach((name) => {
       jsonObj.names[name.trim()] = { checkin: false };
@@ -43,7 +42,7 @@ export function Admin() {
     setJson(jsonObj);
   };
 
-  const onSubmitEvent = (event) => {
+  const onSubmitEvent = () => {
     const db = getDatabase();
     console.log(json);
     set(ref(db, "/"), json);
@@ -55,7 +54,7 @@ export function Admin() {
         <h2 className="my-5">List of Attendees</h2>
         {dataRendering(data)}
       </div>
-      <div class="form-group">
+      <div class="form-group w-50 m-auto mt-5">
         <label for="namesInput">Enter list of names</label>
         <textarea
           class="form-control"
@@ -65,7 +64,7 @@ export function Admin() {
         ></textarea>
         <button
           type="submit"
-          class="btn btn-primary m-auto my-3 text-center align-middle"
+          class="btn btn-primary m-auto my-3"
           onClick={onSubmitEvent}
         >
           Add List

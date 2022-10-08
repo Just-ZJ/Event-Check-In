@@ -13,6 +13,7 @@ export function Person({ data, person, path }) {
         <label>{person}</label>
         <input
           type="checkbox"
+          className="mx-3"
           checked={data[person].checkin}
           onChange={() => onChangeEvent()}
         />
